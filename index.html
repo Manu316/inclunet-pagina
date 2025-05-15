@@ -75,11 +75,8 @@
 
         section {
             display: none; /* Hide all sections by default */
-            /* Removed flex-grow from default state */
             width: 100%; /* Take full width */
             box-sizing: border-box; /* Include padding in element's total width and height */
-            /* Removed overflow-y from default state */
-            /* Added padding directly to section instead of container inside for full background color */
             padding: 40px 20px;
             margin-bottom: 0;
             border-radius: 8px; /* Apply border-radius to section */
@@ -91,12 +88,11 @@
             align-items: center; /* Center content horizontally within the section */
             flex-grow: 1; /* Allow sections to grow and fill main */
             overflow-y: auto; /* Allow sections to scroll if content overflows */
-            /* Added/Modified for scrolling within flex container */
             height: 0; /* Set a base height of 0 for flex calculation */
             flex-basis: 0; /* Set a base basis of 0 for flex calculation */
         }
 
-        /* Re-center container within the section for content width limit */
+        /* Re-center container within the section for content width limit and add bottom padding */
        section .container {
             width: 100%; /* Container takes full width of section padding */
             max-width: 1000px; /* Limit container width */
@@ -105,6 +101,8 @@
             display: flex; /* Keep container as flex for potential inner layouts */
             flex-direction: column;
             align-items: center;
+            /* Add bottom padding to the container inside active sections for scroll space */
+            padding-bottom: 50px; /* Adjust this value as needed */
        }
 
         /* --- Section Specific Styles (Adjusted to work with new structure) --- */
@@ -308,11 +306,13 @@
              margin: 0 auto; /* Center if needed */
          }
 
+        /* This .cta-button style is no longer used for the download section,
+           but keeping it in case it's used elsewhere or planned for future.
         .cta-button {
             display: inline-block;
             padding: 12px 25px;
-            background-color: #FF790E; /* Color naranja */
-            color: #FFFFFF; /* Color blanco */
+            background-color: #FF790E;
+            color: #FFFFFF;
             font-size: 1.1em;
             font-weight: bold;
             text-decoration: none;
@@ -322,6 +322,7 @@
         .cta-button:hover {
             background-color: #e06c00;
         }
+        */
 
     </style>
 </head>
