@@ -81,9 +81,8 @@
             /* Removed overflow-y from default state */
             /* Added padding directly to section instead of container inside for full background color */
             padding: 40px 20px;
-            /* Removed margin-bottom as sections are not stacked */
-             margin-bottom: 0;
-             border-radius: 8px; /* Apply border-radius to section */
+            margin-bottom: 0;
+            border-radius: 8px; /* Apply border-radius to section */
         }
 
         section.active {
@@ -114,7 +113,7 @@
         }
 
         #caracteristicas {
-             background-color: #1A202C; /* Different frame color */
+            background-color: #1A202C; /* Different frame color */
         }
 
         #descargar-app {
@@ -127,7 +126,7 @@
         }
 
         #informacion-general .mission-vision-content {
-             text-align: center;
+            text-align: center;
         }
 
          #informacion-general .mission-vision-content h2 {
@@ -175,11 +174,11 @@
         #caracteristicas .features-content .feature-item h3 {
              color: #FF790E;
              margin-top: 0;
-        }
+         }
 
         #caracteristicas .features-content .feature-item p {
              text-align: justify;
-        }
+         }
 
         #caracteristicas .how-it-works-content {
             text-align: center;
@@ -225,9 +224,9 @@
              border: 1px solid #FFFFFF;
              border-radius: 5px;
              margin-bottom: 8px;
-        }
+         }
 
-        #caracteristicas .how-it-works-content figcaption {
+         #caracteristicas .how-it-works-content figcaption {
              font-size: 0.9em;
              color: #ccc;
              margin-top: auto;
@@ -254,6 +253,17 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* Styling for the QR code image */
+        #descargar-app img {
+            display: block; /* Ensure image is a block element for margin auto */
+            margin: 20px auto 0 auto; /* Center image and add space above */
+            max-width: 200px; /* Limit the maximum width of the QR code */
+            height: auto; /* Maintain aspect ratio */
+            border: 2px solid #FF790E; /* Add border for visibility */
+            border-radius: 5px; /* Optional: add rounded corners */
+        }
+
 
         .hero .container { /* Apply grid layout to the container inside hero */
             display: grid;
@@ -378,11 +388,11 @@
                         <div class="feature-item">
                              <h3>Recursos Adicionales</h3>
                              <p>Accede a guías, documentos y videos complementarios para profundizar tus conocimientos sobre la lengua de señas.</p>
-                        </div>
-                        <div class="feature-item">
+                         </div>
+                         <div class="feature-item">
                              <h3>Uso Offline</h3>
                              <p>Descarga lecciones y recursos para seguir aprendiendo incluso sin conexión a internet.</p>
-                        </div>
+                         </div>
                     </div>
                 </div>
 
@@ -410,8 +420,8 @@
         <section id="descargar-app">
             <div class="container">
                 <h2>¿Listo para comunicarte?</h2>
-                <p>Descarga IncluNet y empieza tu viaje en el mundo de la Lengua de Señas hoy mismo.</p>
-                <a href="#" class="cta-button">Descargar para Android</a>
+                <p>Escanea el código QR con la cámara de tu teléfono para descargar IncluNet y empieza tu viaje en el mundo de la Lengua de Señas hoy mismo.</p>
+                <img src="qr.png" alt="Código QR para descargar la app IncluNet" width="200">
             </div>
         </section>
 
