@@ -11,40 +11,260 @@
             background-color: #0A0D14; /* Color oscuro azul/negro */
             color: #FFFFFF; /* Color blanco */
             line-height: 1.6;
+            /* Prevent body scrolling between sections, sections will manage their own scrolling if needed */
+            overflow-y: hidden; /* Hide vertical scrollbar for the body */
         }
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px; /* Add padding to the sides */
         }
-        header {
+
+        /* --- Navigation Bar Styling --- */
+        nav {
             background-color: #1E1E1E; /* Color gris oscuro */
-            padding: 15px 0;
+            padding: 10px 0;
             border-bottom: 3px solid #FF790E; /* Color naranja */
-            margin-bottom: 30px;
+            margin-bottom: 0; /* Remove margin here as sections won't follow directly */
+            position: sticky; /* Make navigation sticky */
+            top: 0; /* Stick to the top */
+            z-index: 100; /* Ensure it stays on top of other content */
         }
-        header .container {
-            text-align: center;
+
+        nav .container {
+            display: flex;
+            justify-content: center; /* Center the navigation links */
+            align-items: center;
         }
-        header h1 {
-            color: #FF790E; /* Color naranja */
+
+        nav ul {
+            list-style: none;
+            padding: 0;
             margin: 0;
-            font-size: 2.5em;
+            display: flex; /* Arrange list items horizontally */
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center; /* Center items if they wrap */
         }
-        .hero {
-            background-color: #1E1E1E; /* Color gris oscuro */
+
+        nav a {
+            color: #FFFFFF; /* White link color */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            padding: 5px 10px; /* Add padding for click area */
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: #FF790E; /* Orange on hover */
+            background-color: rgba(255, 121, 14, 0.1); /* Subtle background on hover */
+        }
+        /* --- End Navigation Bar Styling --- */
+
+        /* --- Section Display Control --- */
+        main {
+            padding-top: 0; /* No top padding needed if nav is sticky */
+            padding-bottom: 0; /* No bottom padding on main itself */
+            /* Ensure main takes up available space and sections can fill it */
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 53px); /* Adjust 53px based on nav height */
+            /* The container div inside sections will manage padding */
+        }
+
+        section {
+            display: none; /* Hide all sections by default */
+            /* Removed flex-grow from default state */
+            width: 100%; /* Take full width */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            /* Removed overflow-y from default state */
+            /* Added padding directly to section instead of container inside for full background color */
             padding: 40px 20px;
+            /* Removed margin-bottom as sections are not stacked */
+             margin-bottom: 0;
+             border-radius: 8px; /* Apply border-radius to section */
+        }
+
+        section.active {
+            display: flex; /* Use flexbox for active section */
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center content horizontally within the section */
+            flex-grow: 1; /* Allow sections to grow and fill main */
+            overflow-y: auto; /* Allow sections to scroll if content overflows */
+            /* Added/Modified for scrolling within flex container */
+            height: 0; /* Set a base height of 0 for flex calculation */
+            flex-basis: 0; /* Set a base basis of 0 for flex calculation */
+        }
+
+        /* Re-center container within the section for content width limit */
+       section .container {
+            width: 100%; /* Container takes full width of section padding */
+            max-width: 1000px; /* Limit container width */
+            padding: 0; /* Remove padding from container, already on section */
+            box-sizing: border-box;
+            display: flex; /* Keep container as flex for potential inner layouts */
+            flex-direction: column;
+            align-items: center;
+       }
+
+        /* --- Section Specific Styles (Adjusted to work with new structure) --- */
+        #informacion-general {
+            background-color: #1E1E1E; /* Color gris oscuro */
+        }
+
+        #caracteristicas {
+             background-color: #1A202C; /* Different frame color */
+        }
+
+        #descargar-app {
+            background-color: #1E1E1E; /* Back to first frame color */
+        }
+
+        /* Styling for the combined "Información General" content */
+        #informacion-general .hero-content {
+            margin-bottom: 40px; /* Space between hero and mission/vision */
+        }
+
+        #informacion-general .mission-vision-content {
+             text-align: center;
+        }
+
+         #informacion-general .mission-vision-content h2 {
+            color: #FFFFFF;
             text-align: center;
             margin-bottom: 30px;
+        }
+
+         #informacion-general .mission-vision-content h3 {
+             color: #FF790E;
+             margin-top: 25px;
+             margin-bottom: 10px;
+             text-align: left;
+         }
+
+         #informacion-general .mission-vision-content p {
+             text-align: justify;
+             color: #ccc;
+         }
+
+         #informacion-general .mission-vision-content .mision-text,
+         #informacion-general .mission-vision-content .vision-text {
+             margin-bottom: 20px;
+         }
+
+
+        /* Styling for the combined "Características" content */
+         #caracteristicas .features-content {
+             margin-bottom: 40px; /* Space between features and how it works */
+         }
+
+        #caracteristicas .features-content .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        #caracteristicas .features-content .feature-item {
+            background-color: #1E1E1E;
+            padding: 20px;
             border-radius: 8px;
-            display: grid; /* Use grid for layout */
+            border-left: 5px solid #FF790E;
+        }
+
+        #caracteristicas .features-content .feature-item h3 {
+             color: #FF790E;
+             margin-top: 0;
+        }
+
+        #caracteristicas .features-content .feature-item p {
+             text-align: justify;
+        }
+
+        #caracteristicas .how-it-works-content {
+            text-align: center;
+        }
+
+        #caracteristicas .how-it-works-content h2 {
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        #caracteristicas .how-it-works-content > p {
+            text-align: center;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+         #caracteristicas .how-it-works-content .image-gallery {
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: center;
+             align-items: stretch;
+             gap: 25px;
+             margin-top: 15px;
+         }
+
+         #caracteristicas .how-it-works-content figure {
+             margin: 0;
+             flex-basis: 200px;
+             max-width: 220px;
+             flex-grow: 1;
+             display: flex;
+             flex-direction: column;
+             text-align: center;
+         }
+
+        #caracteristicas .how-it-works-content figure img {
+             display: block;
+             width: 100%;
+             aspect-ratio: 9 / 16;
+             object-fit: cover;
+             border: 1px solid #FFFFFF;
+             border-radius: 5px;
+             margin-bottom: 8px;
+        }
+
+        #caracteristicas .how-it-works-content figcaption {
+             font-size: 0.9em;
+             color: #ccc;
+             margin-top: auto;
+         }
+
+
+        /* Styling for the "Descargar App" section */
+        #descargar-app .container {
+            text-align: center;
+        }
+
+        #descargar-app h2 {
+            color: #FFFFFF; /* Color blanco */
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        #descargar-app p {
+            font-size: 1.1em;
+            color: #ccc;
+            margin-bottom: 25px;
+            text-align: justify;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .container { /* Apply grid layout to the container inside hero */
+            display: grid;
             grid-template-columns: 1fr; /* Default to single column */
             align-items: center; /* Center items vertically */
             gap: 20px; /* Add gap between items */
+            text-align: center; /* Center text by default */
         }
          /* Media query for wider screens */
-        @media (min-width: 768px) {
-             .hero {
+         @media (min-width: 768px) {
+             .hero .container {
                  grid-template-columns: 1fr 1fr; /* Two columns on wider screens */
                  text-align: left; /* Align text left on wider screens */
              }
@@ -56,18 +276,18 @@
                  text-align: center; /* Center image within its column */
              }
          }
-        .hero h2 {
-            color: #FFFFFF; /* Color blanco */
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            text-align: left; /* Ensure heading remains left-aligned */
-        }
-        .hero p {
-            font-size: 1.1em;
-            color: #ccc;
-            margin-bottom: 25px;
-            text-align: justify; /* Justify hero paragraph */
-        }
+         .hero h2 {
+             color: #FFFFFF; /* Color blanco */
+             font-size: 2.2em;
+             margin-bottom: 10px;
+             text-align: left; /* Ensure heading remains left-aligned */
+         }
+         .hero p {
+             font-size: 1.1em;
+             color: #ccc;
+             margin-bottom: 25px;
+             text-align: justify; /* Justify hero paragraph */
+         }
          .hero img {
              max-width: 100%; /* Make image responsive */
              height: auto;
@@ -77,6 +297,7 @@
              display: block; /* Prevents bottom space */
              margin: 0 auto; /* Center if needed */
          }
+
         .cta-button {
             display: inline-block;
             padding: 12px 25px;
@@ -91,182 +312,163 @@
         .cta-button:hover {
             background-color: #e06c00;
         }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        .feature-item {
-            background-color: #1E1E1E; /* Color gris oscuro */
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 5px solid #FF790E; /* Color naranja */
-        }
-        .feature-item h3 {
-            color: #FF790E; /* Color naranja */
-            margin-top: 0;
-        }
-        .feature-item p {
-             text-align: justify; /* Justify feature paragraphs */
-        }
-        .app-preview {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #1E1E1E; /* Color gris oscuro */
-            margin-bottom: 30px;
-            border-radius: 8px;
-        }
-        .app-preview h2 {
-            color: #FFFFFF; /* Color blanco */
-            margin-bottom: 20px;
-        }
-        /* Target only the main paragraph directly under app-preview */
-        .app-preview > p {
-             text-align: center; /* Center intro paragraph */
-             margin-bottom: 20px; /* Add some space before gallery */
-             max-width: 600px; /* Optional: Limit width for readability */
-             margin-left: auto; /* Center block if max-width is set */
-             margin-right: auto; /* Center block if max-width is set */
-        }
-        .app-preview .image-gallery {
-             display: flex;
-             flex-wrap: wrap; /* Allow wrapping on smaller screens */
-             justify-content: center; /* Center figures */
-             align-items: stretch; /* Make figures same height if wrapping */
-             gap: 25px; /* Space between figures */
-             margin-top: 15px;
-         }
-         .app-preview figure {
-             margin: 0; /* Reset default figure margin */
-             /* Set a consistent width basis */
-             flex-basis: 200px; /* Set a base width */
-             max-width: 220px; /* Prevent growing too large */
-             flex-grow: 1; /* Allow growing slightly if space allows */
-             display: flex; /* Use flexbox for vertical alignment */
-             flex-direction: column; /* Stack image and caption vertically */
-             text-align: center; /* Center content within figure */
-         }
-        .app-preview figure img {
-            display: block; /* Ensure img is block level */
-            width: 100%; /* Make image fill figure width */
-            /* === Aspect Ratio Styling === */
-            aspect-ratio: 9 / 16; /* Force 9:16 aspect ratio */
-            object-fit: cover; /* Cover the area, cropping if needed */
-            /* ============================ */
-            border: 1px solid #FFFFFF; /* Color blanco */
-            border-radius: 5px;
-            margin-bottom: 8px; /* Space between image and caption */
-        }
-        .app-preview figcaption {
-             font-size: 0.9em;
-             color: #ccc; /* Light gray caption text */
-             margin-top: auto; /* Push caption down if figures have different heights */
-         }
-        /* Final CTA section styling */
-        #cta-final {
-            background-color: #1E1E1E; /* Color gris oscuro */
-            padding: 40px 20px;
-            text-align: center;
-            margin-bottom: 0; /* Remove bottom margin if it's the last element */
-            border-radius: 8px;
-        }
-         #cta-final h2 {
-             color: #FFFFFF; /* Color blanco */
-             font-size: 2.2em;
-             margin-bottom: 10px;
-         }
-         #cta-final p {
-             font-size: 1.1em;
-             color: #ccc;
-             margin-bottom: 25px;
-             text-align: justify; /* Justify CTA paragraph */
-             /* Optional: Add max-width and margin:auto for centered justified block */
-             max-width: 600px;
-             margin-left: auto;
-             margin-right: auto;
-         }
-        main {
-            padding-top: 1px;
-            padding-bottom: 30px;
-        }
+
     </style>
 </head>
 <body>
 
-    <header>
+    <nav>
         <div class="container">
-            <h1>IncluNet</h1>
+            <ul>
+                <li><a href="#informacion-general">Información General</a></li>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#descargar-app">Descargar App</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <main class="container">
+    <main>
+        <section id="informacion-general" class="active">
+            <div class="container">
+                <div class="hero-content hero">
+                    <div class="hero-text">
+                        <h2>Exprésate con seguridad en Lengua de Señas</h2>
+                        <p>Aprende Lengua de Señas de forma interactiva y efectiva. Practica desde la primera lección con IncluNet.</p>
+                        </div>
+                    <div class="hero-image">
+                        <img src="Logo.jpg" alt="Logo de IncluNet">
+                    </div>
+                </div>
 
-        <section class="hero">
-             <div class="hero-text">
-                <h2>Exprésate con seguridad en Lengua de Señas</h2>
-                <p>Aprende Lengua de Señas de forma interactiva y efectiva. Practica desde la primera lección con IncluNet.</p>
-                <a href="#cta-final" class="cta-button">¡Empieza a Aprender Ahora!</a>
-            </div>
-            <div class="hero-image">
-                <img src="Columna-Lenguajesenas.gif" alt="Animación de lengua de señas">
+                <div class="mission-vision-content">
+                    <h2>Nuestra Misión y Visión</h2>
+                    <div class="mision-text">
+                        <h3>Misión</h3>
+                        <p>Desarrollar una herramienta tecnológica que sea de gran utilidad para empoderar a las personas que posean discapacidad auditiva desde un enfoque empático, honesto y con responsabilidad social, facilitando su comunicación y plena integración dentro de todos los ámbitos de la vida cotidiana con la capacidad de poder practicar el lenguaje de señas en tiempo real.</p>
+                    </div>
+                    <div class="vision-text">
+                        <h3>Visión</h3>
+                        <p>Ser una empresa líder dentro de la región en la búsqueda de ayudar a las personas con discapacidad auditiva bajo la creación de una app móvil que sea capaz de detectar los gestos de las manos a través de su cámara frontal, que brinde retroalimentación gracias a la IA junto al asistente virtual que realizará sugerencias, que contenga un diccionario con diversas palabras y su respectiva traducción al lenguaje de señas desde un enfoque interactivo y gamificado en un lapso de 10 años.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <section id="caracteristicas">
+            <div class="container">
+                <div class="features-content">
+                    <h2>Características</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <h3>Lecciones Interactivas</h3>
+                            <p>Aprende señas paso a paso con nuestro módulo de lecciones dinámicas, incluyendo alfabeto, frases y expresiones.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Práctica con Cámara</h3>
+                            <p>Realiza señas frente a tu cámara y recibe retroalimentación instantánea mediante el análisis de tus gestos.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Asistente Virtual</h3>
+                            <p>¿Tienes dudas? Nuestro asistente virtual te guía en tu aprendizaje, responde tus preguntas y te redirige a los recursos necesarios.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Seguimiento de Progreso</h3>
+                            <p>Visualiza tu avance con gráficos, revisa tu historial de lecciones y recibe recomendaciones personalizadas.</p>
+                        </div>
+                        <div class="feature-item">
+                             <h3>Recursos Adicionales</h3>
+                             <p>Accede a guías, documentos y videos complementarios para profundizar tus conocimientos sobre la lengua de señas.</p>
+                        </div>
+                        <div class="feature-item">
+                             <h3>Uso Offline</h3>
+                             <p>Descarga lecciones y recursos para seguir aprendiendo incluso sin conexión a internet.</p>
+                        </div>
+                    </div>
+                </div>
 
-        <section id="features" class="features">
-             <div class="feature-item">
-                <h3>Lecciones Interactivas</h3>
-                <p>Aprende señas paso a paso con nuestro módulo de lecciones dinámicas, incluyendo alfabeto, frases y expresiones.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Práctica con Cámara</h3>
-                <p>Realiza señas frente a tu cámara y recibe retroalimentación instantánea mediante el análisis de tus gestos.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Asistente Virtual</h3>
-                <p>¿Tienes dudas? Nuestro asistente virtual te guía en tu aprendizaje, responde tus preguntas y te redirige a los recursos necesarios.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Seguimiento de Progreso</h3>
-                <p>Visualiza tu avance con gráficos, revisa tu historial de lecciones y recibe recomendaciones personalizadas.</p>
-            </div>
-             <div class="feature-item">
-                <h3>Recursos Adicionales</h3>
-                 <p>Accede a guías, documentos y videos complementarios para profundizar tus conocimientos sobre la lengua de señas.</p>
-            </div>
-             <div class="feature-item">
-                <h3>Uso Offline</h3>
-                 <p>Descarga lecciones y recursos para seguir aprendiendo incluso sin conexión a internet.</p>
+                <div class="how-it-works-content app-preview">
+                    <h2>Así funciona IncluNet</h2>
+                    <p>Descubre lo fácil que es aprender con nuestra interfaz amigable y accesible.</p>
+                    <div class="image-gallery">
+                        <figure>
+                            <img src="Leccion.jpg" alt="Ejemplo de lección interactiva en IncluNet">
+                            <figcaption>Ejemplo de lección interactiva</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="Camara.jpg" alt="Pantalla de práctica con cámara en IncluNet">
+                            <figcaption>Pantalla de práctica con cámara</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="Asistente.jpg" alt="Asistente virtual de IncluNet">
+                            <figcaption>Asistente virtual</figcaption>
+                        </figure>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="how-it-works" class="app-preview">
-             <h2>Así funciona IncluNet</h2>
-             <p>Descubre lo fácil que es aprender con nuestra interfaz amigable y accesible.</p>
-             <div class="image-gallery">
-                 <figure>
-                     <img src="Leccion.jpg" alt="Ejemplo de lección interactiva en IncluNet">
-                     <figcaption>Ejemplo de lección interactiva</figcaption>
-                 </figure>
-                 <figure>
-                     <img src="Camara.jpg" alt="Pantalla de práctica con cámara en IncluNet">
-                     <figcaption>Pantalla de práctica con cámara</figcaption>
-                 </figure>
-                 <figure>
-                     <img src="Asistente.jpg" alt="Asistente virtual de IncluNet">
-                     <figcaption>Asistente virtual</figcaption>
-                 </figure>
+        <section id="descargar-app">
+            <div class="container">
+                <h2>¿Listo para comunicarte?</h2>
+                <p>Descarga IncluNet y empieza tu viaje en el mundo de la Lengua de Señas hoy mismo.</p>
+                <a href="#" class="cta-button">Descargar para Android</a>
             </div>
-         </section>
-
-        <section id="cta-final">
-            <h2>¿Listo para comunicarte?</h2>
-            <p>Descarga IncluNet y empieza tu viaje en el mundo de la Lengua de Señas hoy mismo.</p>
-            <a href="#" class="cta-button">Descargar para Android</a>
         </section>
 
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('main section');
+
+            // Function to show a specific section and hide others
+            function showSection(id) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.querySelector(id);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    // Optional: Update URL hash without triggering hashchange event
+                    // history.pushState(null, null, id);
+                }
+            }
+
+            // Handle navigation link clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default anchor link behavior
+                    const targetId = link.getAttribute('href');
+                    showSection(targetId);
+                });
+            });
+
+            // Handle initial load or deep links
+            // Check if there's a hash in the URL on load
+            const initialHash = window.location.hash;
+            if (initialHash && document.querySelector(initialHash)) {
+                showSection(initialHash);
+            } else {
+                // If no valid hash, show the first section by default
+                sections[0].classList.add('active');
+                // Optional: Add the hash for the first section to the URL
+                // history.replaceState(null, null, '#' + sections[0].id);
+            }
+
+            // Optional: Handle browser back/forward buttons if using history.pushState
+            // window.addEventListener('hashchange', () => {
+            //     const targetId = window.location.hash;
+            //     if (targetId && document.querySelector(targetId)) {
+            //         showSection(targetId);
+            //     } else {
+            //         // Fallback to first section if hash is removed or invalid
+            //         showSection('#' + sections[0].id);
+            //     }
+            // });
+
+        });
+    </script>
 
 </body>
 </html>
